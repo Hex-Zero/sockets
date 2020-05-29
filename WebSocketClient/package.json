@@ -1,0 +1,20 @@
+{
+  "name": "websocketclient",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": " set PORT=1992 && react-scripts start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hex Zero",
+  "license": "ISC",
+  "dependencies": {
+    "antd": "^4.2.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1",
+    "webpack": "^4.43.0",
+    "websocket": "^1.0.31"
+  }
+}
