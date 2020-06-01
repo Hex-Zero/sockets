@@ -8,7 +8,7 @@ const { Search } = Input;
 const { Text } = Typography;
 const { Meta } = Card;
 
-const client = new W3CWebSocket("ws://127.0.0.1:8000");
+const client = new W3CWebSocket("wss://ws-feed.pro.coinbase.com");
 
 class App extends Component {
   state = {
