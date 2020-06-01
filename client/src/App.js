@@ -33,9 +33,7 @@ class App extends Component {
     console.log(client);
   };
   componentDidMount() {
-    client.onopen = () => {
-      console.log("WebSocket Client Connected");
-    };
+    client.onopen = () => {};
 
     // console.log(client._readyState());
 
