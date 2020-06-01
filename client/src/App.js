@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
-import { Card, Avatar, Input, Typography } from "antd";
+import { Typography } from "antd";
 import "antd/dist/antd.css";
 import "./index.css";
 
-const { Search } = Input;
 const { Text } = Typography;
-const { Meta } = Card;
 
 const client = new W3CWebSocket("wss://ws-feed.pro.coinbase.com");
 
@@ -32,15 +30,14 @@ class App extends Component {
         ],
       })
     );
+    console.log(client);
   };
   componentDidMount() {
     client.onopen = () => {
       console.log("WebSocket Client Connected");
     };
 
-    this.onButtonClicked();
-
-    console.log(client._readyState());
+    // console.log(client._readyState());
 
     // client.onmessage = (message) => {
     //   const dataFromServer = JSON.parse(message.data);
@@ -73,7 +70,12 @@ class App extends Component {
               flexDirection: "column",
               paddingBottom: 50,
             }}
-          ></div>
+          >
+            <button
+              id="start-button"
+              onClick={() => this.onButtonClicked()}
+            ></button>
+          </div>
         </div>
       </div>
     );
