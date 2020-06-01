@@ -12,7 +12,7 @@ class App extends Component {
   state = {
     userName: "",
     isLoggedIn: false,
-    messages: [],
+    message: [],
   };
 
   onButtonClicked = () => {
@@ -30,12 +30,17 @@ class App extends Component {
         ],
       })
     );
-    console.log(client);
+  };
+  onClickedShowData = () => {
+    console.log(this.state.message[0]);
+  };
+  onClickedStop = () => {
+    client.CLOSING = () => {};
   };
   componentDidMount() {
     client.onopen = () => {};
     client.onmessage = (message) => {
-      console.log(JSON.parse(message.data));
+      this.state.message.push(message);
     };
     // console.log(client._readyState());
 
@@ -71,10 +76,15 @@ class App extends Component {
               paddingBottom: 50,
             }}
           >
-            <button
-              id="start-button"
-              onClick={() => this.onButtonClicked()}
-            ></button>
+            <button id="start-button" onClick={() => this.onButtonClicked()}>
+              Start
+            </button>
+            <button id="start-button" onClick={() => this.onClickedShowData()}>
+              Print
+            </button>{" "}
+            <button id="start-button" onClick={() => this.onClickedStop()}>
+              Stop
+            </button>
           </div>
         </div>
       </div>
