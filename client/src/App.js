@@ -17,35 +17,46 @@ class App extends Component {
     messages: [],
   };
 
-  onButtonClicked = (value) => {
+  onButtonClicked = () => {
     client.send(
       JSON.stringify({
-        type: "message",
-        msg: value,
-        user: this.state.userName,
+        type: "subscribe",
+        product_ids: ["ETH-USD", "ETH-EUR"],
+        channels: [
+          "level2",
+          "heartbeat",
+          {
+            name: "ticker",
+            product_ids: ["ETH-BTC", "ETH-USD"],
+          },
+        ],
       })
     );
-    this.setState({ searchVal: "" });
   };
   componentDidMount() {
     client.onopen = () => {
       console.log("WebSocket Client Connected");
     };
-    client.onmessage = (message) => {
-      const dataFromServer = JSON.parse(message.data);
-      console.log("got reply! ", dataFromServer);
-      if (dataFromServer.type === "message") {
-        this.setState((state) => ({
-          messages: [
-            ...state.messages,
-            {
-              msg: dataFromServer.msg,
-              user: dataFromServer.user,
-            },
-          ],
-        }));
-      }
-    };
+
+    this.onButtonClicked();
+
+    console.log(client._readyState());
+
+    // client.onmessage = (message) => {
+    //   const dataFromServer = JSON.parse(message.data);
+    //   console.log("got reply! ", dataFromServer);
+    //   if (dataFromServer.type === "message") {
+    //     this.setState((state) => ({
+    //       messages: [
+    //         ...state.messages,
+    //         {
+    //           msg: dataFromServer.msg,
+    //           user: dataFromServer.user,
+    //         },
+    //       ],
+    //     }));
+    //   }
+    // };
   }
   render() {
     return (
