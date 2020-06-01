@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
-import { Typography } from "antd";
+import { Typography, message } from "antd";
 import "antd/dist/antd.css";
 import "./index.css";
 
@@ -34,7 +34,9 @@ class App extends Component {
   };
   componentDidMount() {
     client.onopen = () => {};
-
+    client.onmessage = (message) => {
+      console.log(JSON.parse(message.data));
+    };
     // console.log(client._readyState());
 
     // client.onmessage = (message) => {
