@@ -35,7 +35,7 @@ class App extends Component {
     console.log(this.state.message[0]);
   };
   onClickedStop = () => {
-    client.CLOSING = () => {};
+    client.onclose = () => {};
   };
   componentDidMount() {
     client.onopen = () => {};
